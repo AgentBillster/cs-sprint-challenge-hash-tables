@@ -2,9 +2,29 @@ def has_negatives(a):
     """
     YOUR CODE HERE
     """
-    # Your code here
+    d = {}
+    arr = []
 
-    return result
+    for i in a:
+        if i > 0:
+            if i not in d:
+                d[i] = 0
+            else:
+                d[i] += 1
+        if i < 0:
+            x = i * -1
+            if x in d:
+                d[x] += 1
+            else:
+                d[x] = 0
+
+    for i in d.items():
+        if i[1] == 1:
+            arr.append(i[0])
+
+    print(d)
+
+    return arr
 
 
 if __name__ == "__main__":
