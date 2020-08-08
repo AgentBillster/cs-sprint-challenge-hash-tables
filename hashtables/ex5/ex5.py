@@ -5,18 +5,30 @@ def finder(files, queries):
     """
     YOUR CODE HERE
     """
-    # Your code here
-    # put both arrays in own dictionary
-    # cross check dictionary keys to that contain queries
-    # add thsoe queries to arr
-    cache = {}
-    for name in files:
-        cache[name] = name.rsplit('/', 1)[-1]
+
+    my_dict = {}
 
     result = []
 
+    for path in files:
+
+        file_item = path.split('/')[-1]
+
+        if file_item in my_dict:
+
+            my_dict[file_item].append(path)
+        else:
+
+            my_dict[file_item] = [path]
+
     for q in queries:
-        result = result + [k for k, v in cache.items() if v == q]
+        if q in my_dict:
+            results = my_dict[q]
+
+            for path in results:
+                result.append(path)
+
+    return result
 
 
 if __name__ == "__main__":
